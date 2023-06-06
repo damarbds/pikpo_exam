@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package todo_service;
+
+option go_package = "pkg/services/todo_service";
+
+import "google/protobuf/empty.proto";
+
+message CreateRequest {
+    string name = 1;
+}
+
+message UpdateRequest {
+    uint32 id = 1;
+    string name = 2;
+}
+
+message ReadByIdRequest {
+    uint32 id = 1;
+}
+
+message ReadByIdResponse {
+    uint32 id = 1;
+    string name = 2;
+}
+
+message ReadAllResponse {
+    repeated ReadByIdResponse items = 1;
+}
+
+service ToDoService {
+    rpc Create(CreateRequest) returns (ReadByIdResponse);
+    rpc Update(UpdateRequest) returns (ReadByIdResponse);
+    rpc ReadById(ReadByIdRequest) returns (ReadByIdResponse);
+    rpc ReadAll(google.protobuf.Empty) returns (ReadAllResponse);
+}

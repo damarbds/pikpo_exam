@@ -1,0 +1,11 @@
+{
+    "server": {
+        "listenPort": "8090"
+    },
+    "database": {
+        "postgres": {
+            "connectionString": "postgresql://postgres:Standar123_@localhost:5432/todo_list"
+        },
+        "type": "postgres"
+    }
+}
